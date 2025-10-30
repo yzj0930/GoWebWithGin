@@ -1,4 +1,4 @@
-module GoWebWithGin
+module github.com/yzj0930/GoWebWithGin
 
 go 1.25.1
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"net/http"
+	"github.com/yzj0930/GoWebWithGin/routes"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,9 +9,7 @@ import (
 func main() {
 	r := gin.Default()
 	// 定义路由
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"message": "pong"})
-	})
+	routes.RegisterRoutes(r)
 	// 启动服务
 	r.Run(":8080") // 默认监听 8080 端口
 }
