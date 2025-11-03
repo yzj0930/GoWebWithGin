@@ -4,24 +4,26 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/yzj0930/GoWebWithGin/dto/request"
+	"github.com/yzj0930/GoWebWithGin/services"
 )
 
 type PingController struct {
 	BaseController
+	PingService services.PingService
 }
 
 func (ctrl *PingController) Ping(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "pong"})
+	message := ctrl.PingService.GetPingMessage()
+	c.JSON(http.StatusOK, gin.H{"message": message})
 }
 
 func (ctrl *PingController) MockPostJson(c *gin.Context) {
-	var obj struct {
-		Name string `json:"name"`
-		Age  int    `json:"age"`
-	}
+	var obj request.PostJsonRequest
 
 	c.ShouldBindJSON(&obj)
-	c.JSON(http.StatusOK, gin.H{"information": obj})
+	responseObj := ctrl.PingService.GetPostJson(obj)
+	c.JSON(http.StatusOK, responseObj)
 }
 
 func (ctrl *PingController) MockPostForm(c *gin.Context) {
