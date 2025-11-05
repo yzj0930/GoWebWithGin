@@ -7,26 +7,26 @@ go环境可用
 
 ## 执行步骤
 ``` bash
-go mod init "GoWebWithGin"
+go mod init "github.com/yzj0930/GoWebWithGin"
 go mod tidy
 go run main.go
 ```
 
 ## 框架结构
 ```markdown
-web-project/
+GoWebWithGin/
 ├── 📁 cmd/                    # 应用程序入口
 │   └── 📁 server/
 │       └── main.go           # 主程序入口
 ├── 📁 internal/              # 内部应用程序代码
-│   ├── 📁 handlers/          # HTTP 处理器 (Controllers)
-│   │   ├── user_handler.go
-│   │   ├── product_handler.go
-│   │   └── auth_handler.go
+│   ├── 📁 controllers/       # HTTP 处理器 (Controllers)
+│   │   ├── base_controller.go  # 路由基类，业务类继承该类方法，用于routes层获取路由信息以便注册路由
+│   │   ├── registry.go.go      # 维护静态controller注册表
+│   │   ├── user_controller.go
+│   │   ├── product_controller.go
+│   │   └── auth_controller.go
 │   ├── 📁 routes/            # 路由定义
-│   │   ├── user_routes.go
-│   │   ├── product_routes.go
-│   │   └── routes.go
+│   │   └── routes_manager.go
 │   ├── 📁 services/          # 业务逻辑层
 │   │   ├── user_service.go
 │   │   ├── product_service.go
