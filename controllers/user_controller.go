@@ -1,7 +1,11 @@
 package controllers
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
+	"github.com/yzj0930/GoWebWithGin/dto/request"
+	"github.com/yzj0930/GoWebWithGin/dto/response"
 	"github.com/yzj0930/GoWebWithGin/services"
 )
 
@@ -12,8 +16,22 @@ type UserController struct {
 
 func (ctrl *UserController) GetUserList(c *gin.Context) {
 	// Implementation for getting user
-	ctrl.UserService.GetUserList()
-	c.JSON(200, gin.H{"message": "User list"})
+	results := response.ResponseDto{
+		Status:  0,
+		Message: "Success",
+		Data:    ctrl.UserService.GetUserList(),
+	}
+	c.JSON(http.StatusOK, results)
+}
+
+func (ctrl *UserController) AddUser(c *gin.Context) {
+	// Implementation for adding user
+	var userRequest request.UserRequest
+
+	c.ShouldBindJSON(&userRequest)
+	ctrl.UserService.AddUser(&userRequest)
+
+	c.JSON(http.StatusOK, gin.H{"message": "User added successfully"})
 }
 
 func NewUserController() Controller {
@@ -21,9 +39,14 @@ func NewUserController() Controller {
 		BaseController: BaseController{RequestInfo: make([]RouteConfig, 0)},
 	}
 	controller.RequestInfo = append(controller.RequestInfo, RouteConfig{
-		Url:      "/user",
+		Url:      "/userlist",
 		Method:   "GET",
 		Function: controller.GetUserList,
+	})
+	controller.RequestInfo = append(controller.RequestInfo, RouteConfig{
+		Url:      "/adduser",
+		Method:   "POST",
+		Function: controller.AddUser,
 	})
 	return controller
 }

@@ -5,3 +5,8 @@ type PostJsonRequest struct {
 	Email string `json:"email"`
 	Age   int    `json:"age"`
 }
+
+type UserRequest struct {
+	Name string `json:"name"`
+	Code string `json:"code"`
+}
