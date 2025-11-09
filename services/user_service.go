@@ -6,6 +6,7 @@ import (
 	"github.com/yzj0930/GoWebWithGin/dao"
 	"github.com/yzj0930/GoWebWithGin/dto/request"
 	"github.com/yzj0930/GoWebWithGin/dto/response"
+	"github.com/yzj0930/GoWebWithGin/repositories"
 )
 
 type UserService struct {
@@ -13,15 +14,13 @@ type UserService struct {
 
 func (s *UserService) GetUserList() []response.UserResponseDto {
 	// 调用 DAO 层获取用户列表
-
 	userList := make([]response.UserResponseDto, 0)
-	users, err := dao.GetUserList()
+	users, err := repositories.GetUserList()
 	if err != nil {
 		fmt.Printf("获取用户列表失败: %v\n", err)
 		return userList
 	}
 	for _, user := range users {
-		fmt.Printf("User: %+v\n", user)
 		userList = append(userList, response.UserResponseDto{
 			ID:          user.ID,
 			Name:        user.Name,
@@ -39,5 +38,9 @@ func (s *UserService) AddUser(user *request.UserRequest) error {
 		Name: user.Name,
 		Code: user.Code,
 	}
-	return dao.AddUser(userItem)
+	return repositories.AddUser(userItem)
+}
+
+func (s *UserService) ModifyUser(user *request.UserRequest) error {
+	return repositories.UpdateUser(user.Code, user.Name)
 }

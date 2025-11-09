@@ -25,20 +25,20 @@ GoWebWithGin/
 │   │   ├── user_controller.go
 │   │   ├── product_controller.go
 │   │   └── auth_controller.go
+│   ├── 📁 dao/               # 数据模型
+│   │   ├── user.go
+│   │   ├── product.go
+│   │   └── base_model.go
 │   ├── 📁 routes/            # 路由定义
 │   │   └── routes_manager.go
-│   ├── 📁 services/          # 业务逻辑层
-│   │   ├── user_service.go
-│   │   ├── product_service.go
-│   │   └── auth_service.go
 │   ├── 📁 repositories/      # 数据访问层
 │   │   ├── user_repo.go
 │   │   ├── product_repo.go
 │   │   └── base_repo.go
-│   ├── 📁 models/            # 数据模型
-│   │   ├── user.go
-│   │   ├── product.go
-│   │   └── base_model.go
+│   ├── 📁 services/          # 业务逻辑层
+│   │   ├── user_service.go
+│   │   ├── product_service.go
+│   │   └── auth_service.go
 │   ├── 📁 middleware/        # 中间件
 │   │   ├── auth.go
 │   │   ├── logger.go
