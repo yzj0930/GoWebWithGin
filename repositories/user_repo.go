@@ -8,18 +8,62 @@ import (
 	"gorm.io/gorm"
 )
 
-func GetUserList() ([]dao.User, error) {
+func GetUserList(cond map[string]interface{}, limit int, offset int) ([]dao.User, error) {
 	var users []dao.User
-	result := database.DB.Find(&users)
-	if result.Error != nil {
-		panic("查询用户列表失败: " + result.Error.Error())
+	query := database.DB.Model(&dao.User{})
+
+	// 应用查询条件
+	for key, value := range cond {
+		query = query.Where(fmt.Sprintf("%s = ?", key), value)
+	}
+	if limit > 0 {
+		query = query.Limit(limit)
+	}
+	if offset > 0 {
+		query = query.Offset(offset)
+	}
+
+	err := query.Find(&users)
+	if err.Error != nil {
+		return nil, fmt.Errorf("查询用户列表失败: %w", err.Error)
 	}
 	return users, nil
 }
 
+func GetUserTotal(cond map[string]interface{}) (int64, error) {
+	var total int64
+	query := database.DB.Model(&dao.User{})
+
+	// 应用查询条件
+	for key, value := range cond {
+		query = query.Where(fmt.Sprintf("%s = ?", key), value)
+	}
+
+	err := query.Count(&total)
+	if err.Error != nil {
+		return 0, fmt.Errorf("查询用户列表失败: %w", err.Error)
+	}
+	return total, nil
+}
+
 func AddUser(user *dao.User) error {
-	result := database.DB.Create(user)
-	return result.Error
+	err := database.DB.Transaction(func(tx *gorm.DB) error {
+		// 检查用户是否已存在
+		var existingUser dao.User
+		if err := tx.Where("user_code = ?", user.Code).First(&existingUser).Error; err == nil {
+			return fmt.Errorf("用户已存在，无法添加")
+		}
+		// 添加新用户
+		if err := tx.Create(user).Error; err != nil {
+			return err
+		}
+		return nil
+	})
+
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func UpdateUser(userCode, userName string) error {

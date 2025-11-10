@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/yzj0930/GoWebWithGin/dto/request"
-	"github.com/yzj0930/GoWebWithGin/dto/response"
 	"github.com/yzj0930/GoWebWithGin/services"
+	util "github.com/yzj0930/GoWebWithGin/utils"
 )
 
 type UserController struct {
@@ -15,13 +15,15 @@ type UserController struct {
 }
 
 func (ctrl *UserController) GetUserList(c *gin.Context) {
-	// Implementation for getting user
-	results := response.ResponseDto{
-		Status:  0,
-		Message: "Success",
-		Data:    ctrl.UserService.GetUserList(),
+	var userRequest request.UserListRequest
+
+	c.ShouldBindJSON(&userRequest)
+	result, err := ctrl.UserService.GetUserList(userRequest)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, util.ReturnError(err.Error()))
+		return
 	}
-	c.JSON(http.StatusOK, results)
+	c.JSON(http.StatusOK, util.ReturnSuccess(result))
 }
 
 func (ctrl *UserController) AddUser(c *gin.Context) {
@@ -29,9 +31,24 @@ func (ctrl *UserController) AddUser(c *gin.Context) {
 	var userRequest request.UserRequest
 
 	c.ShouldBindJSON(&userRequest)
-	ctrl.UserService.AddUser(&userRequest)
-
+	err := ctrl.UserService.AddUser(&userRequest)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, util.ReturnErrorE(err))
+		return
+	}
 	c.JSON(http.StatusOK, gin.H{"message": "User added successfully"})
+}
+
+func (ctrl *UserController) ModifyUser(c *gin.Context) {
+	// Implementation for updating user
+	var userRequest request.UserRequest
+	c.ShouldBindJSON(&userRequest)
+	err := ctrl.UserService.ModifyUser(&userRequest)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, util.ReturnError(err.Error()))
+		return
+	}
+	c.JSON(http.StatusOK, util.ReturnSuccess("User updated successfully"))
 }
 
 func NewUserController() Controller {
@@ -47,6 +64,11 @@ func NewUserController() Controller {
 		Url:      "/adduser",
 		Method:   "POST",
 		Function: controller.AddUser,
+	})
+	controller.RequestInfo = append(controller.RequestInfo, RouteConfig{
+		Url:      "/modifyuser",
+		Method:   "POST",
+		Function: controller.ModifyUser,
 	})
 	return controller
 }

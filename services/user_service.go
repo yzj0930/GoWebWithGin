@@ -12,13 +12,32 @@ import (
 type UserService struct {
 }
 
-func (s *UserService) GetUserList() []response.UserResponseDto {
+func buildUserListConditions(param request.UserListRequest) map[string]interface{} {
+	cond := make(map[string]interface{})
+	if param.Name != "" {
+		cond["user_name"] = param.Name
+	}
+	if param.Code != "" {
+		cond["user_code"] = param.Code
+	}
+	return cond
+}
+
+func (s *UserService) GetUserList(param request.UserListRequest) ([]response.UserResponseDto, error) {
 	// 调用 DAO 层获取用户列表
 	userList := make([]response.UserResponseDto, 0)
-	users, err := repositories.GetUserList()
+	cond := buildUserListConditions(param)
+	if param.Page <= 0 {
+		param.Page = 1
+	}
+	if param.PageSize <= 0 {
+		param.PageSize = 10
+	}
+	limit := param.PageSize
+	offset := (param.Page - 1) * param.PageSize
+	users, err := repositories.GetUserList(cond, limit, offset)
 	if err != nil {
-		fmt.Printf("获取用户列表失败: %v\n", err)
-		return userList
+		return nil, fmt.Errorf("获取用户列表失败: %v", err)
 	}
 	for _, user := range users {
 		userList = append(userList, response.UserResponseDto{
@@ -29,7 +48,7 @@ func (s *UserService) GetUserList() []response.UserResponseDto {
 			UpdatedTime: user.UpdateTime,
 		})
 	}
-	return userList
+	return userList, nil
 }
 
 func (s *UserService) AddUser(user *request.UserRequest) error {
@@ -42,5 +61,6 @@ func (s *UserService) AddUser(user *request.UserRequest) error {
 }
 
 func (s *UserService) ModifyUser(user *request.UserRequest) error {
+	// 调用 DAO 层更新用户
 	return repositories.UpdateUser(user.Code, user.Name)
 }
