@@ -2,9 +2,12 @@ port: 8080
 host: localhost
 database:
   username: root
-  password: 123456
+  password: admin798?
   host: localhost
   port: 3306
   dbname: demo_db
 server:
   timeout: 10s
+logging:
+  level: info
+  file:  temp/logs/app.log

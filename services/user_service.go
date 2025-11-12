@@ -6,6 +6,7 @@ import (
 	"github.com/yzj0930/GoWebWithGin/dao"
 	"github.com/yzj0930/GoWebWithGin/dto/request"
 	"github.com/yzj0930/GoWebWithGin/dto/response"
+	"github.com/yzj0930/GoWebWithGin/logger"
 	"github.com/yzj0930/GoWebWithGin/repositories"
 )
 
@@ -48,6 +49,7 @@ func (s *UserService) GetUserList(param request.UserListRequest) ([]response.Use
 			UpdatedTime: user.UpdateTime,
 		})
 	}
+	logger.Info("获取用户列表成功，数量：", len(userList))
 	return userList, nil
 }
 

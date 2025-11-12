@@ -6,6 +6,7 @@ import (
 
 	"github.com/yzj0930/GoWebWithGin/config"
 	"github.com/yzj0930/GoWebWithGin/database"
+	"github.com/yzj0930/GoWebWithGin/logger"
 	"github.com/yzj0930/GoWebWithGin/routes"
 
 	"github.com/gin-gonic/gin"
@@ -21,6 +22,7 @@ func main() {
 	}()
 	config.LoadYAMLConfig("config/config.yaml")
 	database.InitDB()
+	logger.InitSysetmLogger()
 	port := config.GlobalConfig.Port
 	r := gin.Default()
 	// 定义路由

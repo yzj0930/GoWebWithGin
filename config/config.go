@@ -21,6 +21,10 @@ type Config struct {
 	Server struct {
 		Timeout string `yaml:"timeout"`
 	} `yaml:"server"`
+	Logging struct {
+		Level string `yaml:"level"`
+		File  string `yaml:"file"`
+	} `yaml:"logging"`
 	// Add other config fields as needed
 }
 
