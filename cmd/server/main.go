@@ -7,6 +7,7 @@ import (
 	"github.com/yzj0930/GoWebWithGin/config"
 	"github.com/yzj0930/GoWebWithGin/database"
 	"github.com/yzj0930/GoWebWithGin/logger"
+	"github.com/yzj0930/GoWebWithGin/middleware"
 	"github.com/yzj0930/GoWebWithGin/routes"
 
 	"github.com/gin-gonic/gin"
@@ -25,6 +26,9 @@ func main() {
 	logger.InitSysetmLogger()
 	port := config.GlobalConfig.Port
 	r := gin.Default()
+
+	// 中间件调用
+	r.Use(middleware.LoggerMiddleware())
 	// 定义路由
 	routes.RegisterRoutes(r)
 	// 启动服务
