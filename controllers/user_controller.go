@@ -20,10 +20,10 @@ func (ctrl *UserController) GetUserList(c *gin.Context) {
 	c.ShouldBindJSON(&userRequest)
 	result, err := ctrl.UserService.GetUserList(userRequest)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, util.ReturnError(err.Error()))
+		util.ReturnErrorGin(c, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, util.ReturnSuccess(result))
+	util.ReturnSuccessGin(c, result)
 }
 
 func (ctrl *UserController) AddUser(c *gin.Context) {

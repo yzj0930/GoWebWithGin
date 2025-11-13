@@ -9,3 +9,79 @@ INFO: 2025/11/13 00:23:49 log.go:66: 获取用户列表成功，数量： 3
 INFO: 2025/11/13 00:23:49 log.go:66: GET /userlist 200 750.5µs
 INFO: 2025/11/13 00:24:02 log.go:66: 获取用户列表成功，数量： 3
 INFO: 2025/11/13 00:24:02 log.go:66: GET /userlist 200 12.9343ms
+FATAL: 2025/11/13 21:48:02 log.go:94: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+FATAL: 2025/11/13 21:50:14 log.go:94: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+INFO: 2025/11/13 21:51:52 log.go:66: 数据库配置: 用户名=%s, 密码=%s, 主机=%s, 端口=%d, 数据库名=%s
+ root 123456 localhost 3306 demo_db
+FATAL: 2025/11/13 21:51:53 log.go:94: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+INFO: 2025/11/13 21:52:40 log.go:66: 数据库配置: 用户名=root, 密码=123456, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+FATAL: 2025/11/13 21:52:40 log.go:94: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+INFO: 2025/11/13 21:54:22 log.go:66: 数据库配置: 用户名=root, 密码=123456, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+FATAL: 2025/11/13 21:54:22 log.go:94: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+INFO: 2025/11/13 21:54:38 log.go:66: 数据库配置: 用户名=root, 密码=123456, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+FATAL: 2025/11/13 21:54:38 log.go:94: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+INFO: 2025/11/13 21:55:43 log.go:66: 数据库配置: 用户名=root, 密码=123456, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+WARN: 2025/11/13 21:55:43 log.go:87: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+INFO: 2025/11/13 21:55:43 log.go:66: 配置文件加载成功，数据库连接成功，日志系统初始化成功
+INFO: 2025/11/13 21:55:43 log.go:66: 启动服务器，监听端口： 8080
+INFO: 2025/11/13 21:55:43 log.go:66: 中间件注册成功
+INFO: 2025/11/13 21:55:43 log.go:66: 路由注册成功
+INFO: 2025/11/13 22:03:01 log.go:66: 数据库配置: 用户名=root, 密码=123456, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+WARN: 2025/11/13 22:03:01 log.go:87: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+INFO: 2025/11/13 22:03:01 log.go:66: 配置文件加载成功，数据库连接成功，日志系统初始化成功
+INFO: 2025/11/13 22:03:01 log.go:66: 启动服务器，监听端口： 8080
+INFO: 2025/11/13 22:03:01 log.go:66: 中间件注册成功
+INFO: 2025/11/13 22:03:01 log.go:66: 路由注册成功
+ERROR: 2025/11/13 22:03:06 log.go:73: Panic recovered: runtime error: invalid memory address or nil pointer dereference
+goroutine 19 [running]:
+runtime/debug.Stack()
+	D:/go/src/runtime/debug/stack.go:26 +0x5e
+main.main.CustomRecovery.func3.1()
+	D:/GoProject/GoWebWithGin/middleware/custom_recovery.go:17 +0x48
+panic({0x7ff676e84840?, 0x7ff677827cd0?})
+	D:/go/src/runtime/panic.go:783 +0x132
+gorm.io/gorm.(*DB).getInstance(0x7ff67789e500?)
+	C:/Users/yangzhijian/go/pkg/mod/gorm.io/gorm@v1.31.1/gorm.go:435 +0x12
+gorm.io/gorm.(*DB).Model(...)
+	C:/Users/yangzhijian/go/pkg/mod/gorm.io/gorm@v1.31.1/chainable_api.go:19
+github.com/yzj0930/GoWebWithGin/repositories.GetUserList(0xc00031f508, 0xa, 0x0)
+	D:/GoProject/GoWebWithGin/repositories/user_repo.go:13 +0x65
+github.com/yzj0930/GoWebWithGin/services.(*UserService).GetUserList(0x7ff67782c6c0?, {{0x0, 0x0}, {0x0, 0x0}, 0x1, 0xa})
+	D:/GoProject/GoWebWithGin/services/user_service.go:39 +0x245
+github.com/yzj0930/GoWebWithGin/controllers.(*UserController).GetUserList(0xc000201ce0, 0xc00033c000)
+	D:/GoProject/GoWebWithGin/controllers/user_controller.go:21 +0xa5
+github.com/gin-gonic/gin.(*Context).Next(0xc00033c000)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/context.go:192 +0x4e
+main.main.CustomRecovery.func3(0xc00031f638?)
+	D:/GoProject/GoWebWithGin/middleware/custom_recovery.go:38 +0x3f
+github.com/gin-gonic/gin.(*Context).Next(0xc00033c000)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/context.go:192 +0x4e
+main.main.LoggerMiddleware.func2(0xc00033c000)
+	D:/GoProject/GoWebWithGin/middleware/logger.go:15 +0x46
+github.com/gin-gonic/gin.(*Context).Next(0xc00033c000)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/context.go:192 +0x4e
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1(0xc00031f778?)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/recovery.go:92 +0x51
+github.com/gin-gonic/gin.(*Context).Next(0xc00033c000)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/context.go:192 +0x4e
+github.com/gin-gonic/gin.LoggerWithConfig.func1(0xc00033c000)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/logger.go:249 +0xca
+github.com/gin-gonic/gin.(*Context).Next(0xc00033c000)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/context.go:192 +0x4e
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000ca000, 0xc00033c000)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/gin.go:689 +0x435
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000ca000, {0x7ff677152bf0, 0xc000338000}, 0xc000310000)
+	C:/Users/yangzhijian/go/pkg/mod/github.com/gin-gonic/gin@v1.11.0/gin.go:643 +0x1ad
+net/http.serverHandler.ServeHTTP({0x7ff6771506f0?}, {0x7ff677152bf0?, 0xc000338000?}, 0x1?)
+	D:/go/src/net/http/server.go:3340 +0x8e
+net/http.(*conn).serve(0xc0000da090, {0x7ff677153bf0, 0xc000094540})
+	D:/go/src/net/http/server.go:2109 +0x665
+created by net/http.(*Server).Serve in goroutine 1
+	D:/go/src/net/http/server.go:3493 +0x485
+
+INFO: 2025/11/13 22:03:06 log.go:66: GET /userlist 500 1.0509ms

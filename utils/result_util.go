@@ -1,6 +1,11 @@
 package util
 
-import "github.com/yzj0930/GoWebWithGin/dto/response"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/yzj0930/GoWebWithGin/dto/response"
+)
 
 const SUCCESS_CODE = 0
 const DEFAULT_ERROR_CODE = -1
@@ -29,4 +34,24 @@ func ReturnErrorE(err error) response.ResponseDto {
 
 func ReturnErrorWithStatus(status int, message string) response.ResponseDto {
 	return ReturnResult(status, message, nil)
+}
+
+func ReturnSuccessGin(c *gin.Context, data interface{}) {
+	c.JSON(http.StatusOK, ReturnSuccess(data))
+}
+
+func ReturnErrorGin(c *gin.Context, message string) {
+	c.JSON(http.StatusOK, ReturnError(message))
+}
+
+func ReturnErrorEGin(c *gin.Context, err error) {
+	c.JSON(http.StatusOK, ReturnErrorE(err))
+}
+
+func ReturnErrorWithStatusGin(c *gin.Context, status int, message string) {
+	c.JSON(http.StatusOK, ReturnErrorWithStatus(status, message))
+}
+
+func ReturnSuccessNoDataGin(c *gin.Context) {
+	c.JSON(http.StatusOK, ReturnSuccess(nil))
 }

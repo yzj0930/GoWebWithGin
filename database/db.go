@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/yzj0930/GoWebWithGin/config"
+	"github.com/yzj0930/GoWebWithGin/logger"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -13,8 +14,7 @@ var DB *gorm.DB
 
 func InitDB() {
 	dbConfig := config.GlobalConfig.Database
-	fmt.Printf("数据库配置: 用户名=%s, 密码=%s, 主机=%s, 端口=%d, 数据库名=%s\n",
-		dbConfig.Username, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.DBName)
+	logger.Info(fmt.Sprintf("数据库配置: 用户名=%s, 密码=%s, 主机=%s, 端口=%d, 数据库名=%s\n", dbConfig.Username, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.DBName))
 	db, err := gorm.Open(mysql.New(mysql.Config{
 		DSN:                       fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", dbConfig.Username, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.DBName), // data source name
 		DefaultStringSize:         256,                                                                                                                                                           // default size for string fields
@@ -25,7 +25,9 @@ func InitDB() {
 	}), &gorm.Config{})
 
 	if err != nil {
-		panic("failed to connect database, err: " + err.Error())
+		logger.Warn("failed to connect database, err: ", err)
+		return
+		// panic("failed to connect database, err: " + err.Error())
 	}
 
 	// 获取通用数据库对象 sql.DB ，然后使用其提供的功能
@@ -33,7 +35,9 @@ func InitDB() {
 	sqlDB, err := db.DB()
 
 	if err != nil {
-		panic("failed to get database, err: " + err.Error())
+		logger.Warn("failed to get database, err: ", err)
+		return
+		// panic("failed to get database, err: " + err.Error())
 	}
 
 	// SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
