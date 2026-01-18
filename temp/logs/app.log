@@ -85,3 +85,123 @@ created by net/http.(*Server).Serve in goroutine 1
 	D:/go/src/net/http/server.go:3493 +0x485
 
 INFO: 2025/11/13 22:03:06 log.go:66: GET /userlist 500 1.0509ms
+INFO: 2026/01/07 11:42:51 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+INFO: 2026/01/21 00:04:18 log.go:66: 数据库配置: 用户名=root, 密码=123456, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+WARN: 2026/01/21 00:04:18 log.go:87: failed to connect database, err:  Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+INFO: 2026/01/21 00:04:39 log.go:66: GET /ping 200 0s
+INFO: 2026/01/21 00:04:39 log.go:66: GET /favicon.ico 404 0s
+INFO: 2026/01/21 00:05:41 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+INFO: 2026/01/21 00:05:53 log.go:66: GET /ping 200 0s
+INFO: 2026/01/21 00:06:00 log.go:66: GET /login 404 0s
+INFO: 2026/01/21 00:06:36 log.go:66: POST /login 401 23.9359ms
+INFO: 2026/01/21 00:08:07 log.go:66: POST /login 401 504.1µs
+INFO: 2026/01/21 20:21:38 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+INFO: 2026/01/21 20:22:38 log.go:66: GET /ping 200 0s
+INFO: 2026/01/21 20:25:51 log.go:66: GET /ping 200 0s
+INFO: 2026/01/21 20:31:26 log.go:66: POST /mock_post_json 200 0s
+INFO: 2026/01/21 20:33:35 log.go:66: POST /mock_post_json 200 504.8µs
+INFO: 2026/01/21 20:34:52 log.go:66: POST /mock_post_form 200 0s
+INFO: 2026/01/21 20:36:42 log.go:66: GET /mock_post_json 404 0s
+INFO: 2026/01/21 20:37:06 log.go:66: GET /mock_post_json&param123 404 0s
+INFO: 2026/01/21 20:37:30 log.go:66: GET /mock_get_query 200 0s
+INFO: 2026/01/21 20:37:39 log.go:66: GET /mock_get_query 200 0s
+INFO: 2026/01/21 20:37:53 log.go:66: GET /mock_get_query 200 0s
+INFO: 2026/01/21 20:38:11 log.go:66: GET /mock_get_query 200 0s
+INFO: 2026/01/21 20:38:32 log.go:66: GET /mock_get_query 200 0s
+INFO: 2026/01/21 20:38:42 log.go:66: GET /mock_get_query 200 0s
+INFO: 2026/01/21 20:38:52 log.go:66: GET /mock_get_query 200 0s
+INFO: 2026/01/21 20:41:16 log.go:66: GET /mock_get_query 200 0s
+INFO: 2026/01/21 20:44:34 log.go:66: GET /mock_get_path/:id=1 200 1.0086ms
+INFO: 2026/01/21 20:44:41 log.go:66: GET /mock_get_path/123 200 0s
+INFO: 2026/01/21 20:45:13 log.go:66: PUT /mock_put 200 0s
+INFO: 2026/01/21 20:50:14 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+INFO: 2026/01/21 20:50:23 log.go:66: PUT /mock_put 400 0s
+INFO: 2026/01/21 20:51:13 log.go:66: PUT /mock_put 200 0s
+INFO: 2026/01/21 20:52:01 log.go:66: PUT /mock_put 200 0s
+INFO: 2026/01/21 20:52:55 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/21 20:52:55 log.go:66: GET /userlist 200 37.6563ms
+INFO: 2026/01/21 20:54:04 log.go:66: GET /adduser 404 0s
+INFO: 2026/01/21 20:54:09 log.go:66: POST /adduser 500 64.3427ms
+INFO: 2026/01/21 20:54:52 log.go:66: POST /adduser 500 64.3552ms
+INFO: 2026/01/21 20:55:06 log.go:66: POST /adduser 500 60.2965ms
+INFO: 2026/01/21 20:59:05 log.go:66: POST /adduser 500 150.9254ms
+INFO: 2026/01/22 00:02:29 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=demo_db
+
+INFO: 2026/01/22 00:02:38 log.go:66: POST /adduser 500 59.4272ms
+INFO: 2026/01/22 00:04:09 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/22 00:04:09 log.go:66: GET /userlist 200 6.6824ms
+INFO: 2026/01/22 15:21:09 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 15:23:54 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/22 15:23:54 log.go:66: GET /userlist 200 34.2919ms
+INFO: 2026/01/22 15:24:11 log.go:66: POST /adduser 200 65.6471ms
+INFO: 2026/01/22 15:24:17 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/22 15:24:17 log.go:66: GET /userlist 200 1.2917ms
+INFO: 2026/01/22 15:37:28 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 15:37:45 log.go:66: {  0 0}
+INFO: 2026/01/22 15:37:45 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/22 15:37:45 log.go:66: GET /userlist 200 5.8376ms
+INFO: 2026/01/22 15:38:43 log.go:66: {  0 0}
+INFO: 2026/01/22 15:38:43 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/22 15:38:43 log.go:66: GET /userlist 200 1.1173ms
+INFO: 2026/01/22 15:39:56 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 15:40:17 log.go:66: map[]
+INFO: 2026/01/22 15:40:17 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/22 15:40:17 log.go:66: GET /userlist 200 8.126ms
+INFO: 2026/01/22 15:41:48 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 15:42:04 log.go:66: map[]
+INFO: 2026/01/22 15:42:04 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/22 15:42:04 log.go:66: GET /userlist 200 6.9209ms
+INFO: 2026/01/22 15:43:01 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 15:43:27 log.go:66: map[]
+INFO: 2026/01/22 15:43:27 log.go:66: 1
+INFO: 2026/01/22 15:43:27 log.go:66: 获取用户列表成功，数量： 0
+INFO: 2026/01/22 15:43:27 log.go:66: GET /userlist 200 6.5279ms
+INFO: 2026/01/22 15:47:51 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 15:48:27 log.go:66: map[]
+INFO: 2026/01/22 15:48:27 log.go:66: 获取用户列表成功，数量： 1
+INFO: 2026/01/22 15:48:27 log.go:66: GET /userlist 200 8.2771ms
+INFO: 2026/01/22 16:37:21 log.go:66: POST /adduser 500 120.7368ms
+INFO: 2026/01/22 16:37:34 log.go:66: POST /adduser 200 67.438ms
+INFO: 2026/01/22 17:03:20 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 17:24:40 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 17:25:24 log.go:66: POST /adduser 500 65.6204ms
+INFO: 2026/01/22 17:25:37 log.go:66: POST /adduser 200 83.1998ms
+INFO: 2026/01/22 17:27:17 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 17:27:23 log.go:66: <nil>
+INFO: 2026/01/22 17:27:23 log.go:66: POST /adduser 500 61.8365ms
+INFO: 2026/01/22 17:27:35 log.go:66: POST /adduser 200 61.6476ms
+INFO: 2026/01/22 17:29:26 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+INFO: 2026/01/22 17:29:42 log.go:66: POST /adduser 200 68.6035ms
+INFO: 2026/01/22 18:12:42 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+TRACE: 2026/01/22 18:14:08 gorm_logger.go:87: [0.505ms] [rows:1] INSERT INTO `users` (`user_name`,`user_code`,`telephone`,`password`,`create_time`,`update_time`) VALUES ('yzj001','yzj001','188********','$2a$10$/mgjpoqM5hqaD5CYi5qpeeXdWGT0yAzj7EjQYgvnpx9Jye6G6vYKK','2026-01-22 18:14:08.383','2026-01-22 18:14:08.383')
+INFO: 2026/01/22 18:14:08 log.go:66: POST /adduser 200 67.4468ms
+TRACE: 2026/01/22 18:14:28 gorm_logger.go:87: [0.000ms] [rows:1] SELECT * FROM `users` WHERE user_code = 'yzj001' ORDER BY `users`.`user_id` LIMIT 1
+INFO: 2026/01/22 18:14:28 log.go:66: POST /adduser 500 59.9246ms
+TRACE: 2026/01/22 18:14:36 gorm_logger.go:87: [1.233ms] [rows:1] INSERT INTO `users` (`user_name`,`user_code`,`telephone`,`password`,`create_time`,`update_time`) VALUES ('yzj002','yzj002','188********','$2a$10$T9Y7ISkFFHWu5KrE3encE.DPkYQLtRIhtcmWTO34GXOCbegksrFXe','2026-01-22 18:14:36.519','2026-01-22 18:14:36.519')
+INFO: 2026/01/22 18:14:36 log.go:66: POST /adduser 200 69.2283ms
+INFO: 2026/01/22 20:26:42 log.go:66: 数据库配置: 用户名=root, 密码=admin798?, 主机=localhost, 端口=3306, 数据库名=goodsplateform
+
+ERROR: 2026/01/22 20:26:57 gorm_logger.go:80: [3.510ms] [rows:0] SELECT * FROM `users` WHERE user_code = 'yzj003' ORDER BY `users`.`user_id` LIMIT 1  error: record not found
+TRACE: 2026/01/22 20:26:57 gorm_logger.go:87: [1.502ms] [rows:1] INSERT INTO `users` (`user_name`,`user_code`,`telephone`,`password`,`create_time`,`update_time`) VALUES ('yzj003','yzj003','188********','$2a$10$6ClPYKSneCcp4.1nowwD6uHC9ZwQHqGekld8jI5wSUgycxIg90IxG','2026-01-22 20:26:57.489','2026-01-22 20:26:57.489')
+INFO: 2026/01/22 20:26:57 log.go:66: POST /adduser 200 73.0555ms
+TRACE: 2026/01/22 23:40:25 gorm_logger.go:87: [4.683ms] [rows:1] SELECT count(*) FROM `users`
+TRACE: 2026/01/22 23:40:25 gorm_logger.go:87: [0.543ms] [rows:3] SELECT * FROM `users` LIMIT 10
+INFO: 2026/01/22 23:40:25 log.go:66: 获取用户列表成功，数量： 3
+INFO: 2026/01/22 23:40:25 log.go:66: GET /userlist 200 15.392ms
+INFO: 2026/01/22 23:40:56 log.go:66: POST /modifyuser 500 536.1µs

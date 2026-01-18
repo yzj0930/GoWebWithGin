@@ -51,9 +51,22 @@ func (ctrl *UserController) ModifyUser(c *gin.Context) {
 	c.JSON(http.StatusOK, util.ReturnSuccess("User updated successfully"))
 }
 
+func (ctrl *UserController) UserLogin(c *gin.Context) {
+	// Implementation for user login
+	var loginRequest request.UserLoginRequest
+	c.ShouldBindJSON(&loginRequest)
+	token, err := ctrl.UserService.UserLogin(&loginRequest)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, util.ReturnError(err.Error()))
+		return
+	}
+	c.JSON(http.StatusOK, util.ReturnSuccess(token))
+}
+
 func NewUserController() Controller {
 	controller := &UserController{
 		BaseController: BaseController{RequestInfo: make([]RouteConfig, 0)},
+		
 	}
 	controller.RequestInfo = append(controller.RequestInfo, RouteConfig{
 		Url:      "/userlist",
@@ -69,6 +82,11 @@ func NewUserController() Controller {
 		Url:      "/modifyuser",
 		Method:   "POST",
 		Function: controller.ModifyUser,
+	})
+	controller.RequestInfo = append(controller.RequestInfo, RouteConfig{
+		Url:      "/login",
+		Method:   "POST",
+		Function: controller.UserLogin,
 	})
 	return controller
 }

@@ -44,7 +44,12 @@ func (ctrl *PingController) MockGetPath(c *gin.Context) {
 }
 
 func (ctrl *PingController) MockPut(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "PUT request received"})
+	var obj request.PostJsonRequest
+	if err := c.ShouldBindJSON(&obj); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "PUT request received", "data": obj})
 }
 
 func NewPingController() *PingController {

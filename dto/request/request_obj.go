@@ -7,8 +7,10 @@ type PostJsonRequest struct {
 }
 
 type UserRequest struct {
-	Name string `json:"name"`
-	Code string `json:"code"`
+	Name      string `json:"name"`
+	Code      string `json:"code"`
+	Telephone string `json:"telephone"`
+	Password  string `json:"password"`
 }
 
 type UserListRequest struct {
@@ -17,4 +19,12 @@ type UserListRequest struct {
 	Code     string `json:"code"`
 	Page     int    `json:"page"`
 	PageSize int    `json:"page_size"`
+}
+
+type UserLoginRequest struct {
+	Code     string `json:"code"`
+	Password string `json:"password"`
+}
+
+type GoodsRequest struct {
 }

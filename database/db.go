@@ -8,6 +8,7 @@ import (
 	"github.com/yzj0930/GoWebWithGin/logger"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	gormlogger "gorm.io/gorm/logger"
 )
 
 var DB *gorm.DB
@@ -22,7 +23,9 @@ func InitDB() {
 		DontSupportRenameIndex:    true,                                                                                                                                                          // drop & create when rename index, rename index not supported before MySQL 5.7, MariaDB
 		DontSupportRenameColumn:   true,                                                                                                                                                          // `change` when rename column, rename column not supported before MySQL 8, MariaDB
 		SkipInitializeWithVersion: false,                                                                                                                                                         // auto configure based on currently MySQL version
-	}), &gorm.Config{})
+	}), &gorm.Config{
+		Logger: logger.NewGormLogger(gormlogger.Info).LogMode(gormlogger.Info),
+	})
 
 	if err != nil {
 		logger.Warn("failed to connect database, err: ", err)

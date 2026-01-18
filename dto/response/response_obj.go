@@ -22,3 +22,8 @@ type UserResponseDto struct {
 	UpdatedTime time.Time `json:"update_time"`
 	// DeletedAt   gorm.DeletedAt `gorm:"index" json:"deleted_at"`   // 软删除字段暂时不考虑，后续需要再加
 }
+
+type UserListResponse struct {
+	List []UserResponseDto	`json:"list"`
+	Total int               `json:"total"`
+}

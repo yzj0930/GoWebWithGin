@@ -27,6 +27,7 @@ func main() {
 	port := config.GlobalConfig.Port
 	r := gin.Default()
 	// 中间件调用
+	r.Use(middleware.CorsMiddleware())
 	r.Use(middleware.LoggerMiddleware())
 	r.Use(middleware.CustomRecovery())
 	// 定义路由
